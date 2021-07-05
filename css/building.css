@@ -1,0 +1,408 @@
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	tranform-style: preserve-3d !important;
+}
+
+/*window style*/
+
+.window {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	bottom: 1em;
+	width: 60%;
+	border: 6px solid orange;
+	box-sizing: border-box;
+}
+.window::before,
+.window::after {
+	content: '';
+	height: 100%;
+	width: 6px;
+	background-color: orange;
+
+	position: absolute;
+	top: 0;
+	z-index: 3;
+}
+.window::before {
+	left: 30%;
+}
+.window::after {
+	right: 33%;
+}
+.window .rod {
+	position: absolute;
+	left: 0;
+	height: 1px;
+	width: 100%;
+	background: red;
+}
+.window .rod:first-child {
+	top: 26.67%;
+}
+.window .rod:nth-child(2){
+	bottom: 26.67%;
+}
+.window .rod::before,
+.window .rod::after {
+	content: '';
+	height: 100%;
+	width: 100%;
+	background: inherit;
+
+	position: absolute;
+	left: 0;
+}
+.window .rod::before {
+	bottom: 0.7em;
+}
+.window .rod::after {
+	top: 0.7em;
+}
+
+/*end of windows styles*/
+
+.scene {
+	width: 100vw;
+	height: 100vh;
+	/*overflow: auto;*/
+	overflow: hidden;
+	
+	scroll-behavior: smooth;
+
+	perspective: 800px;
+	transform-style: preserve-3d;
+
+	display: grid;
+	place-items: center;
+	background-color: black;
+	padding: 5em;
+}
+.building {
+	--face-width: 25em;
+	--face-height: 27em;
+	--inset: 2em;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+	z-index: 3;
+	/*transform: translateZ(-10em);*/
+}
+.face1,
+.face2,
+.face3,
+.face4 {
+	position: relative;
+	transform-style: preserve-3d;
+}
+.face1,
+.lantel {
+	background:  conic-gradient(
+		transparent 90deg, 
+		rgba(0, 0, 0, 0.1) 90deg 180deg, 
+		transparent 180deg 270deg, 
+		rgba(0, 0, 0, 0.1) 270deg 360deg
+	);
+	background-size: 5px 5px;
+	background-color:  rgba(204, 0, 0, 1);
+}
+.face1 {
+	width: var(--face-width);
+	height: var(--face-height);
+	z-index: 5;
+}
+.face1::before,
+.face1::after {
+	content: '';
+	position: absolute;
+}
+.face1::before {
+	height: 10px;
+	background: white;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+	top: -10px;
+	left: -0.5em;
+	right: -0.2em;
+}
+.face1::after {
+	height: 100%;
+	width: var(--inset);
+	background-color: red;
+	transform-origin: left center;
+	border-top: 5px solid grey;
+	transform: rotateY(80deg);
+
+	left: 100%;
+	top: 0;
+}
+.face1__insetface {
+	width: calc(0.7 * var(--face-width));
+	height: calc(0.65 * var(--face-height));
+	/*background-color: white;*/
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.face1__insetface::before {
+	content: '';
+	width: calc(2 * var(--inset));
+	height: 100%;
+
+	background: blue;
+	transform-origin: 0% 50%;
+	transition: transform 2s ease-in-out;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.face1__insetface:hover::before{
+	transform: rotateY(45deg);
+}
+.face1__insetface .window {
+	width: 80%;
+	right: 1em;
+	left: unset;
+	top: 0.5em;
+	bottom: 45%;
+	background: radial-gradient(#0000, #000);
+	background-color: orange;
+}
+.face1__insetface .window .rod {
+	background-color: rgba(0, 0, 0, 0.3);
+	height: 2px;
+}
+.face1__windowwall {
+	height: 100%;
+	/*width: 100%;*/
+	margin-right: 0.5em;
+	background-color: pink;
+	/*transform: translateZ(-5px);*/
+}
+.face2 {
+	height: var(--face-height);
+	width: calc(0.40 * var(--face-width));
+	background:  conic-gradient(
+		rgba(255, 132, 0, 0.195) 90deg, 
+		rgba(0, 0, 0, 0.1) 90deg 180deg, 
+		#ecedf0 180deg 270deg, 
+		rgba(0, 0, 0, 0.1) 270deg 360deg
+	);
+	background-size: 5px 5px;
+	background-color: #eaeaea;
+	transform: translateZ(calc(-1 * var(--inset)));
+	margin-left: 0.3em;
+	z-index: 3;
+}
+.face2::before,
+.face2::after {
+	content: '';
+	position: absolute;
+}
+.face2::before {
+	background: darkgrey;
+	height: 7px;
+	border-bottom: 2px solid grey;
+
+	bottom: calc(100% - 7px);
+	right: -0.6em;
+	left: 0;
+}
+.face2::after {
+	left: 100%;
+	top: 5px;
+	border: 0.5em solid transparent;
+	border-bottom-width: 1em;
+	border-top-width: 0;
+	border-left-color: grey;
+	border-left-width: 0.6em;
+}
+.face2 .window-wrapper {
+	top: 40%;
+	height: 40%;
+	z-index: 2;
+
+	background: inherit;
+	position: relative;
+}
+.face2 .window-wrapper .window {
+	right: 0.8em !important;
+	left: 0.5em;
+	width: 70%;
+	height: 140px;
+
+	border-color: darkgrey;
+	background: radial-gradient(#0000, #000);
+	background-color: rgba(255, 255, 255, 0.4);
+}
+.face2 .window::before,  
+.face2 .window::after {
+	background-color: darkgrey;
+}
+.face2 .window .rod {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.face2 .lantel {
+	height: 20px;
+	width: 120%;
+
+	position: absolute;
+	z-index: 1;
+}
+.face2 .lantel--top {
+	top: 40%;
+	left: -0.6em;
+	transform: translateY(-25px);
+}
+.face2 .lantel--bottom {
+	bottom: 15%;
+	left: -0.6em;
+	transform: translateY(15px);
+}
+.face2 .lantel::before {
+	content: '';
+	width: calc(100% - 0.6em);
+
+	position: absolute;
+	background:  conic-gradient(
+		transparent 90deg, 
+		rgba(0, 0, 0, 0.1) 90deg 180deg, 
+		transparent 180deg 270deg, 
+		rgba(0, 0, 0, 0.1) 270deg 360deg
+	);
+	background-size: 5px 5px;
+	background-color:  rgba(120, 0, 0, 1);
+}
+.face2 .lantel.lantel--top::before {
+	height: 30px;
+	top: 100%;
+	right: 0;
+	transform: rotateX(-65deg) skewX(-20deg);
+	transform-origin: top center;
+	/*background: linear-gradient(to bottom, black, transparent);*/
+}
+.face2 .lantel.lantel--bottom::before {
+	bottom: 100%;
+	right: 0;
+	height: 60px;
+	transform-origin: bottom center;
+	transform: rotateX(-65deg) skewX(15deg);
+}
+.face3 {
+	width: var(--face-width);
+	height: var(--face-height);
+	background: 
+		conic-gradient(
+			#ecedf0 90deg, 
+			grey 90deg 135deg, 
+			lightgrey 135deg 180deg,
+			orange 180deg 225deg, 
+			darkgrey 225deg 270deg, 
+			white 270deg 360deg
+		), 
+		radial-gradient(#0000 60%, #000);
+	background-size: 15px 4px, 100% 100%;
+	background-color: grey;
+	transform: translateZ(calc(-5 * var(--inset)));
+	margin-left: -1.5em;
+	z-index: 2;
+}
+.face3 .ceiling {
+	position: absolute;
+	top: -20px;
+	width: 120%;
+	height: 15px;
+	background-color: rgba(70, 41, 0, 1);
+}
+.face3 .ceiling::before,
+.face3 .ceiling::after {
+	content: '';
+	position: absolute;
+}
+.face3 .ceiling::before {
+	width: 100%;
+	top: 100%;
+	height: 10px;
+	transform-origin: top center;
+	transform: skewX(-85deg);
+	border-right: 5px solid #eaeaea;
+}
+/*.face3 .ceiling::after {}*/
+.face3__smallwindow {
+	width: 4em;
+	height: 4em;
+	border: 1em white solid;
+	background: black;
+	transform-style: preserve-3d;
+
+	position: absolute;
+	top: 50%;
+	left: 10%;
+	transform: translateY(-100%);
+}
+.face3__bigwindow-wrapper {
+	background-color: white;
+	height: 8em;
+	width: 60%;
+
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.face3__bigwindow-wrapper .window {
+	background: black;
+}
+.face4 {
+	background-color: green;
+	height: var(--face-height);
+	width: calc(var(--face-width) * 0.3);
+	transform: translateZ(calc(var(--inset) * -5)) rotateY(-45deg);
+	transform-origin: left center;
+}
+.face5 {
+	background-color: blue;
+	height: var(--face-height);
+	width: calc(var(--face-width) * 0.75);
+	transform: translate3d(-3.5em, 0, calc(var(--inset) * -4)) rotateY(20deg);
+	/*transform-origin: left center;*/
+}
+
+/* compound styles */
+
+.compound {
+	height: 500px;
+	width: 80vw;
+	/*background: conic-gradient(
+		rgba(0, 0, 0, 0.1) 90deg,
+		transparent 90deg 180deg,
+		rgba(0, 0, 0, 0.1) 180deg 270deg,
+		transparent 270deg 360deg
+	);
+	background-size: 20% 20%;*/
+	background-color: #eaeaea;
+
+	position: absolute;
+	top: 70%;
+	left: 50%;
+
+	transform: translateX(-50%) rotateX(60deg);
+	transform-origin: top center;
+	z-index: 1;
+}
+.grass {
+	position: absolute;
+	top: 15em;
+	left: 5em;
+	right: 5em;
+	bottom: -6em;
+	background: rgba(0, 194, 0);
+	border: 5px solid darkgrey;
+}

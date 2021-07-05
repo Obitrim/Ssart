@@ -88,6 +88,7 @@
 	width: calc(var(--size) - 250px);
 	height: calc(var(--size) - 250px);
 	background: #00438D;
+	overflow: hidden;
 }
 .star {
 	width: 100%;
@@ -95,9 +96,9 @@
 	background: white;
 	clip-path: polygon(
 		50% 0,
-		64% 30%,
+		65% 30%,
 		100% 30%,
-		65% 55%,
+		70% 55%,
 		90% 90%,
 		50% 70%,
 		10% 90%,

@@ -68,9 +68,8 @@
 .scene {
 	width: 100vw;
 	height: 100vh;
-	/*overflow: auto;*/
-	overflow: hidden;
-	
+	overflow: auto;
+
 	scroll-behavior: smooth;
 
 	perspective: 800px;
@@ -92,13 +91,15 @@
 
 	position: relative;
 	z-index: 3;
-	/*transform: translateZ(-10em);*/
 }
 .face1,
 .face2,
 .face3,
-.face4 {
+.face4,
+.face5,
+.face6 {
 	position: relative;
+	z-index: 3;
 	transform-style: preserve-3d;
 }
 .face1,
@@ -109,7 +110,7 @@
 		transparent 180deg 270deg, 
 		rgba(0, 0, 0, 0.1) 270deg 360deg
 	);
-	background-size: 5px 5px;
+	background-size: 10px 10px;
 	background-color:  rgba(204, 0, 0, 1);
 }
 .face1 {
@@ -144,27 +145,30 @@
 .face1__insetface {
 	width: calc(0.7 * var(--face-width));
 	height: calc(0.65 * var(--face-height));
-	/*background-color: white;*/
 
 	position: absolute;
 	right: 0;
 	bottom: 0;
 }
-.face1__insetface::before {
-	content: '';
-	width: calc(2 * var(--inset));
-	height: 100%;
-
-	background: blue;
-	transform-origin: 0% 50%;
-	transition: transform 2s ease-in-out;
-
+.face1 .sidewall {
 	position: absolute;
-	top: 0;
 	left: 0;
+	top: 0;
+	bottom: 2px;
+	width: 1em;
+	height: 100%;
+	background: #eaeaea;
 }
-.face1__insetface:hover::before{
-	transform: rotateY(45deg);
+.face1 .flowerpot__lawn {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 40px;
+	width: calc(1.08 * var(--face-width));
+	transform: skewX(-25deg) rotateX(50deg) translate3d(0.8em, 90%, 0.6em);
+	background: conic-gradient(from 315deg, rgba(0, 0, 0, 0.4) 90deg, transparent 90deg 360deg);
+	background-size: 10px 10px;
+	background-color: rgba(0, 54, 0, 1);
 }
 .face1__insetface .window {
 	width: 80%;
@@ -180,11 +184,10 @@
 	height: 2px;
 }
 .face1__windowwall {
-	height: 100%;
-	/*width: 100%;*/
+	height: 95%;
+	margin-left: 1em;
 	margin-right: 0.5em;
-	background-color: pink;
-	/*transform: translateZ(-5px);*/
+	background-color: white;
 }
 .face2 {
 	height: var(--face-height);
@@ -200,6 +203,16 @@
 	transform: translateZ(calc(-1 * var(--inset)));
 	margin-left: 0.3em;
 	z-index: 3;
+}
+.face2 .sidewall {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	transform: translateX(100%) rotateY(90deg);
+	transform-origin: left center;
 }
 .face2::before,
 .face2::after {
@@ -286,7 +299,6 @@
 	right: 0;
 	transform: rotateX(-65deg) skewX(-20deg);
 	transform-origin: top center;
-	/*background: linear-gradient(to bottom, black, transparent);*/
 }
 .face2 .lantel.lantel--bottom::before {
 	bottom: 100%;
@@ -334,7 +346,6 @@
 	transform: skewX(-85deg);
 	border-right: 5px solid #eaeaea;
 }
-/*.face3 .ceiling::after {}*/
 .face3__smallwindow {
 	width: 4em;
 	height: 4em;
@@ -361,48 +372,197 @@
 	background: black;
 }
 .face4 {
-	background-color: green;
+	background-color: #ededed;
 	height: var(--face-height);
 	width: calc(var(--face-width) * 0.3);
 	transform: translateZ(calc(var(--inset) * -5)) rotateY(-45deg);
 	transform-origin: left center;
+	border-bottom: 1px solid rgb(80, 0, 0);
+	border-top: 1px solid rgb(80, 0, 0);
 }
-.face5 {
-	background-color: blue;
-	height: var(--face-height);
-	width: calc(var(--face-width) * 0.75);
-	transform: translate3d(-3.5em, 0, calc(var(--inset) * -4)) rotateY(20deg);
-	/*transform-origin: left center;*/
-}
+.face4::before,
+.face4::after {
+	content: '';
+	width: 100%;
+	height: 30%;
 
-/* compound styles */
-
-.compound {
-	height: 500px;
-	width: 80vw;
-	/*background: conic-gradient(
+	position: absolute;
+	left: 0;
+	background: conic-gradient(
 		rgba(0, 0, 0, 0.1) 90deg,
 		transparent 90deg 180deg,
 		rgba(0, 0, 0, 0.1) 180deg 270deg,
 		transparent 270deg 360deg
 	);
-	background-size: 20% 20%;*/
+	background-size: 8px  8px;
+	background-color: rgb(80, 0, 0);
+}
+.face4::before {
+	top: 0;
+}
+.face4::after {
+	bottom: 0;
+}
+.face4 .window-wrapper {
+	position: absolute;
+	top: 30%;
+	z-index: -1;
+
+	width: 100%;
+	height: 60%;
+	transform: translateX(1em);
+}
+.face4 .window-wrapper .window {
+	border-color: black;
+	background: radial-gradient(#0000 20%, #000);
+	background-position: 50% 0%;
+	background-color: darkgrey;
+	transform: skewY(1deg);
+}
+.face4 .window-wrapper .window .rod,
+.face4 .window-wrapper .window::before {
+	background-color: black;
+}
+.face4 .window-wrapper .window::before {
+	left: 50%;
+}
+.face4 .window-wrapper .window::after {
+	display: none;
+}
+.face4 .window-wrapper .window .rod::before {
+	top: -1em;
+}
+.face4 .window-wrapper .window .rod::after {
+	bottom: -1em;
+}
+.face5 {
+	overflow: hidden;
+	z-index: 4;
+
+	background: linear-gradient(to right, lightgrey, #ecedf0);
+	height: var(--face-height);
+	width: calc(var(--face-width) * 0.75);
+	transform: translate3d(-3em, 0, calc(var(--inset) * -4)) rotateY(20deg);
+}
+.face5 .top,
+.face5 .top::after,
+.face5 .top::before,
+.face5 .bottom__left,
+.face5 .bottom__right,
+.face5 .bottom__left::before,
+.face5 .bottom__right::before
+{
+	background:  conic-gradient(
+		transparent 90deg, 
+		rgba(0, 0, 0, 0.1) 90deg 180deg, 
+		transparent 180deg 270deg, 
+		rgba(0, 0, 0, 0.1) 270deg 360deg
+	);
+	background-size: 10px 10px;
+	background-color:  rgba(199, 53, 0, 1);
+}
+.face5 .top {
+	height: 20%;
+	width: 100%;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+.face5 .top::before,
+.face5 .top::after  {
+	content: "";
+	height: 150%;
+
+	position: absolute;
+	top: 0;
+}
+.face5 .top::before {
+	width: 30px;
+	left: 0;
+}
+.face5 .top::after {
+	width: 20px;
+	right: 0;
+}
+.face5 .bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30%;
+	z-index: 3;
+}
+.face5 .bottom__right,
+.face5 .bottom__left {
+	width: 30%;
+	height: 30%;
+
+	position: absolute;
+	bottom: 0;
+}
+.face5 .bottom__right::before,
+.face5 .bottom__left::before {
+	content: "";
+	width: 30px;
+	height: 334%;
+
+	position: absolute;
+	bottom: 0;
+}
+.face5 .bottom__left::before,
+.face5 .bottom__left {
+	left: 0;
+}
+.face5 .bottom__right::before,
+.face5 .bottom__right {
+	right: 0;
+}
+.backwall {
+	width: 70%;
+	height: 90%;
+	background: conic-gradient(
+		rgba(0, 0, 0, 0.1) 90deg,
+		transparent 90deg 180deg,
+		rgba(0, 0, 0, 0.1) 180deg 270deg,
+		transparent 270deg 360deg
+	);
+	background-size: 8px  8px;
+	background-color: rgb(80, 0, 0);
+
+	transform: skewY(10deg);
+
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+/* compound styles */
+
+.compound {
+	height: 40em;
 	background-color: #eaeaea;
 
 	position: absolute;
-	top: 70%;
-	left: 50%;
+	top: 60%;
+	left:  -20%;
+	right: -10%;
 
-	transform: translateX(-50%) rotateX(60deg);
-	transform-origin: top center;
+	transform:  rotateX(60deg);
 	z-index: 1;
 }
 .grass {
 	position: absolute;
 	top: 15em;
-	left: 5em;
-	right: 5em;
-	bottom: -6em;
-	background: rgba(0, 194, 0);
+	left: 10em;
+	right: 10em;
+	bottom: 5em;
+
+	background: conic-gradient(from 315deg, rgba(0, 0, 0, 0.2) 90deg, transparent 90deg 360deg);
+	background-size: 10px 10px;
+	background-color: rgba(0, 194, 0);
 	border: 5px solid darkgrey;
+	border-bottom: none;
 }

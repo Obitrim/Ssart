@@ -39,14 +39,10 @@ body {
 	margin-bottom: 0;
 	padding-top: 2em;
 }
-.CSSDeclaration {
-	margin-left: 1em;
-}
 .Header__IntroText {
 	font-weight: normal;
 	font-size: calc(var(--font-size) * 1.1);
 	margin-top: 1em; 
-	margin-left: 4em;
 	margin-bottom: 0.5em; 
 	color: grey;
 }
@@ -138,6 +134,15 @@ body {
 
 /*medium to large screen*/
 
+@media (min-width: 768px) {
+	.CSSDeclaration {
+		margin-left: 0.5em;
+	}
+	.Header__IntroText {
+		margin-left: 2em;
+	}
+}
+
 @media (min-width: 992px) {
 	.Header .Container {
 		display: flex;
@@ -154,5 +159,11 @@ body {
 	.Layers {
 		width: 200px;
 		height: 200px;
+	}
+	.CSSDeclaration {
+		margin-left: 1em;
+	}
+	.Header__IntroText {
+		margin-left: 4em;
 	}
 }

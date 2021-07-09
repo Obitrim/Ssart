@@ -13,8 +13,9 @@ body {
 		rgba(255, 255, 255, 0.02) 180deg 270deg,
 		transparent 270deg 360deg
 
-	);
-	background-size: 100px 100px;
+	),
+	radial-gradient(#0000 , #000);
+	background-size: 100px 100px, 100% 100%;
 	background-color: #212121;
 	font-family: sans-serif;
 }
@@ -37,14 +38,18 @@ body {
 	color: var(--color-primary);
 	font-size: calc(var(--font-size) * 2);
 	margin-bottom: 0;
-	padding-top: 2em;
+	padding-top: 4em;
 }
 .Header__IntroText {
 	font-weight: normal;
 	font-size: calc(var(--font-size) * 1.1);
 	margin-top: 1em; 
+	margin-left: 2em;
 	margin-bottom: 0.5em; 
 	color: grey;
+}
+.CSSDeclaration {
+	margin: 1em;
 }
 .ActionBtn {
 	display: inline-block;
@@ -95,12 +100,12 @@ body {
 	transform-style: preserve-3d;
 	position: relative;
 
-	width: 100px;
-	height: 100px;
+	width: 200px;
+	height: 200px;
 	background-color: white;
 	border-radius: 0.5em;
 	transform: perspective(500px) rotateX(30deg) skew(-40deg);
-	transition: 3s;
+	transition: 1s;
 }
 .Layers:hover .front {
 	transform: translateZ(4em);
@@ -134,15 +139,6 @@ body {
 
 /*medium to large screen*/
 
-@media (min-width: 768px) {
-	.CSSDeclaration {
-		margin-left: 0.5em;
-	}
-	.Header__IntroText {
-		margin-left: 2em;
-	}
-}
-
 @media (min-width: 992px) {
 	.Header .Container {
 		display: flex;
@@ -151,17 +147,10 @@ body {
 	}
 	.Header__Heading {
 		padding-top: 0;
-		font-size: calc(var(--font-size) * 2);
+		font-size: calc(var(--font-size) * 4);
 	}
 	.LayersWrapper {
 		padding-top: 0;
-	}
-	.Layers {
-		width: 200px;
-		height: 200px;
-	}
-	.CSSDeclaration {
-		margin-left: 1em;
 	}
 	.Header__IntroText {
 		margin-left: 4em;

@@ -1,3 +1,7 @@
+:root {
+	--font-size: 16px;
+	--color-primary: rgb(4, 244, 240);
+}
 *, *::before, *::after {
 	margin: 0;
 	padding: 0;

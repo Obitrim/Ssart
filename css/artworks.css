@@ -61,7 +61,7 @@ body {
 .Art img {
 	width: 100%;
 	height: auto;
-	min-height: 170px;
+	min-height: 150px;
 	border-radius: 5px 16px 5px 16px;
 }
 .Art strong {

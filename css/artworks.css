@@ -1,7 +1,19 @@
 body {
-	background-color: #212121;
 	color: white;
 	font-family: sans-serif;
+
+	background: conic-gradient(
+		from 45deg,
+		rgba(255, 255, 255, 0.02) 90deg,
+		transparent 90deg 180deg,
+		rgba(255, 255, 255, 0.02) 180deg 270deg,
+		transparent 270deg 360deg
+
+	),
+	radial-gradient(#0000 , #000);
+	background-size: 100px 100px, 100% 100%;
+	background-color: #212121;
+	background-attachment: fixed;
 }
 .Container {
 	max-width: 992px;
@@ -20,15 +32,19 @@ body {
 	text-align: center;
 }
 .Arts {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-	grid-gap: 2rem;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
 } 
 .Art {
+	flex: 270px 1;
+
 	background-color: rgba(255, 255, 255, 0.15);
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
+
 	border: 1px solid rgba(255, 255, 255, 0.2);
+	margin: 1em 0 0 1em;
 	border-left: 1px solid rgba(255, 255, 255, 0.4);
 	border-top: 1px solid rgba(255, 255, 255, 0.4);
 
@@ -45,7 +61,7 @@ body {
 .Art img {
 	width: 100%;
 	height: auto;
-	min-height: 210px;
+	min-height: 170px;
 	border-radius: 5px 16px 5px 16px;
 }
 .Art strong {

@@ -27,14 +27,15 @@
 	display: inline-block;
 	position: absolute;
 	left: 50%;
-	top: 0.5em;
+	top: 50%;
+
 	width: 100%;
 	text-align: center;
-	transform: translateX(-50%);
+	transform: translate(-50%, -100%);
 	z-index: 2;
 
 	text-transform: uppercase;
-	font-size: 90px;
+	font-size: 5em;
 	font-family: sans-serif;
 	color: transparent;
 
@@ -51,7 +52,7 @@
 	place-items: center;
 }
 .shield {
-	--size: 400px;
+	--size: 270px;
 
 	position: fixed;
 	left: 50%;
@@ -76,13 +77,13 @@
 	background-size: 100% 100%;
 }
 .shield__white {
-	width: calc(var(--size) - 150px);
-	height: calc(var(--size) - 150px);
+	width: 65%;
+	height: 65%;
 	background: white;
 }
 .star__wrapper {
-	width: calc(var(--size) - 250px);
-	height: calc(var(--size) - 250px);
+	width: 50%;
+	height: 50%;
 	background: #00438D;
 	overflow: hidden;
 }
@@ -115,4 +116,18 @@
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 1;
+}
+
+@media (min-width: 500px) {
+	.shield {
+		--size: 400px;
+	}
+
+	.Name {
+		top: 1.5rem;
+
+		transform: translateX(-50%);
+		font-size: 90px;
+		z-index: 2;
+	}
 }

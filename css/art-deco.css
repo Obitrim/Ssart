@@ -1,0 +1,151 @@
+* {
+    /* box-sizing: border-box; */
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo::before {
+    content: "";
+    z-index: 3;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+}
+
+.outer-box,
+.outer-rotate {
+    position: absolute;
+}
+
+
+.outer-box {
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    z-index: 4;
+}
+
+.outer-box::before,
+.outer-box::after {
+    content: "";
+
+    position: absolute;
+}
+
+.outer-box::before {
+    left: 40px;
+    right: 40px;
+    top: -5px;
+    bottom: -5px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.outer-box::after {
+    top: 40px;
+    bottom: 40px;
+    left: -5px;
+    right: -5px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.inner-box,
+.content {
+    margin: auto;
+    border-radius: 50%;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.inner-box {
+    height: 170px;
+    width: 170px;
+
+    border: 1px solid red;
+}
+
+.content {
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+    border: 3px double red;
+    text-align: center;
+    line-height: 200%;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+
+    border-radius: 50%;
+    border: 1px dashed black;
+}
+
+
+.content h4 {
+    width: 260%;
+    border: 1px solid red;
+    background: #fff;
+    border-left: none;
+    border-right: none;
+    z-index: 5;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.content h4::before,
+.content h4::after {
+    content: '';
+    width: 20px;
+    z-index: 6;
+
+    border-radius: 50%;
+
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.content h4::before {
+    left: -10px;
+    border-right: 1px solid green;
+}
+
+.content h4::after {
+    right: -10px;
+    border-left: 1px solid green;
+}
+
+
+.outer-rotate {
+    width: 87%;
+    height: 87%;
+    border: 3px solid green;
+    z-index: 2;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+}

@@ -27,15 +27,30 @@ body {
 .Intro {
 	margin: 1em 0 4em;
 }
+
+.GoHome a {
+	text-decoration: none;
+	color: var(--color-primary);
+}
+
+.GoHome a:hover {
+	color: white;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+}
+
+.GoHome,
 .Heading,
 .Intro {
 	text-align: center;
 }
+
 .Arts {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 } 
+
 .Art {
 	flex: 270px 1;
 
@@ -61,7 +76,9 @@ body {
 .Art img {
 	width: 100%;
 	height: auto;
+	max-height: 120px;
 	min-height: 150px;
+	object-fit: cover;
 	border-radius: 5px 16px 5px 16px;
 }
 .Art strong {

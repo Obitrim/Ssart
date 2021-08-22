@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="Container">
+		<div class="GoHome"><a href="#" id="GoHomeLink">&larr;&nbsp;Go Home</a></div>
 		<h1 class="Heading">My Artworks</h1>
 		<p class="Intro">Unleashing the power of vanilla CSS in creating art</p>
 		<div class="Arts">
@@ -26,5 +27,8 @@
 			</a>
 		</div>
 	</div>
+	<script>
+		document.getElementById("GoHomeLink").addEventListener("click", () => history.back());
+	</script>
 </body>
 </html>
